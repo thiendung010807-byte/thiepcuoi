@@ -3011,3 +3011,41 @@ body.invitation-page #weddingSite > section:not(#openingScreen) {
   content-visibility: auto;
   contain-intrinsic-size: auto 800px;
 }
+
+/* Fix: keep magic-wand button above decorative flowers */
+.guestbook-form {
+  position: relative;
+  z-index: 3;
+}
+
+.guestbook-form-row {
+  position: relative;
+  z-index: 4;
+}
+
+.guestbook-floral {
+  z-index: 1;
+}
+
+.guestbook-pen {
+  position: relative;
+  z-index: 5;
+  background: #f6efe6;
+  box-shadow:
+    0 6px 16px rgba(87, 22, 31, .10),
+    inset 0 0 0 1px rgba(122,29,39,.08);
+}
+
+@media (max-width: 480px) {
+  .guestbook-floral {
+    left: -28px;
+    bottom: -18px;
+    width: 108px;
+  }
+
+  .guestbook-pen {
+    flex-basis: 46px;
+    width: 46px;
+    height: 46px;
+  }
+}
