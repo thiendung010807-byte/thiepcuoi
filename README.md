@@ -50,3 +50,11 @@ Khi mở bằng `file://` trên máy, sổ lưu bút dùng localStorage để pr
 ## Deploy Vercel
 
 Project không cần build framework. Import repository vào Vercel và đặt `GOOGLE_SCRIPT_URL`. File `vercel.json` giữ cache dài hạn cho assets và `no-store` cho API.
+
+
+## Preview khi chia sẻ Messenger / Zalo
+- `assets/social-preview.jpg`: ảnh social preview 1200x630.
+- Open Graph (`og:title`, `og:description`, `og:image`) đã được thêm trực tiếp trong `index.html`.
+- Vì bot của Messenger/Zalo không chạy JavaScript, các nội dung preview phải nằm trong thẻ `<meta>` tĩnh, không đọc từ `wedding-config.js`.
+- Nếu đổi tên cô dâu/chú rể hoặc ngày cưới, hãy sửa luôn các meta tương ứng trong `<head>` của `index.html`.
+- Khi thay ảnh preview mà nền tảng vẫn hiện ảnh cũ, tăng `?v=1` thành `?v=2` trong URL `og:image` rồi deploy lại để tránh cache cũ.
