@@ -1,6 +1,6 @@
 const weddingConfig = window.WEDDING_CONFIG || {
-  groom: { name: "Đặng Hoàng Long", shortName: "Hoàng Long", bankName: "", bankAccount: "", bankAccountName: "", bankQrImage: "" },
-  bride: { name: "Vũ Bảo Ngọc", shortName: "Bảo Ngọc" },
+  groom: { name: "Trần Văn Chiến", shortName: "Trần Chiến", bankName: "", bankAccount: "", bankAccountName: "", bankQrImage: "" },
+  bride: { name: "Nguyễn Thị Lan Thảo", shortName: "Lan Thảo" },
 };
 
 function applyWeddingConfig() {
@@ -16,10 +16,6 @@ function applyWeddingConfig() {
 applyWeddingConfig();
 
 const page = document.body;
-
-requestAnimationFrame(() => {
-  requestAnimationFrame(() => page.classList.add("is-ready"));
-});
 
 const revealItems = document.querySelectorAll(".reveal-slide");
 const observer = new IntersectionObserver(
@@ -55,6 +51,7 @@ if (albumCarousel && albumSlides.length) {
   let autoTimer = null;
   let suppressClick = false;
   let lightboxStartX = 0;
+  let albumInView = false;
   const AUTO_DELAY = 2700;
 
   albumSlides.forEach((_, index) => {
@@ -131,7 +128,7 @@ if (albumCarousel && albumSlides.length) {
 
   function startAutoplay() {
     stopAutoplay();
-    if (albumLightbox?.classList.contains("is-open")) return;
+    if (!albumInView || document.hidden || albumLightbox?.classList.contains("is-open")) return;
     autoTimer = window.setInterval(next, AUTO_DELAY);
   }
 
@@ -257,7 +254,14 @@ if (albumCarousel && albumSlides.length) {
   });
 
   renderAlbum();
-  startAutoplay();
+
+  const albumVisibilityObserver = new IntersectionObserver((entries) => {
+    albumInView = entries.some((entry) => entry.isIntersecting);
+    if (albumInView) startAutoplay();
+    else stopAutoplay();
+  }, { threshold: 0.12 });
+
+  albumVisibilityObserver.observe(albumCarousel);
 }
 
 // Add the wedding reception to the guest's calendar as an .ics file.

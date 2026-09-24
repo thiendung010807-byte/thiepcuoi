@@ -2886,3 +2886,128 @@ main,
   .lightbox-nav--prev { left: 22px; }
   .lightbox-nav--next { right: 22px; }
 }
+
+.music-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: max(16px, calc(env(safe-area-inset-bottom) + 10px));
+  z-index: 300;
+
+  width: 48px;
+  height: 48px;
+
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  background: rgba(105, 18, 29, 0.92);
+
+  box-shadow:
+    0 8px 24px rgba(69, 8, 17, 0.24),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.music-disc {
+  width: 37px;
+  height: 37px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      #efd69f 0 11%,
+      #791b26 12% 31%,
+      #4e0d15 32% 100%
+    );
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.16);
+}
+
+.music-note {
+  color: #f7e5bc;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.music-toggle.is-playing .music-disc {
+  animation: wedding-disc-spin 4s linear infinite;
+}
+
+@keyframes wedding-disc-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.music-toggle:active {
+  transform: scale(.92);
+}
+
+/* =========================================================
+   SINGLE-PAGE FLOW — stable music + zero layout jump
+   ========================================================= */
+/* The button exists in the DOM so the audio can be primed from the envelope
+   tap, but it is completely hidden until the invitation content is revealed. */
+.music-toggle {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(.82);
+  transition:
+    opacity .42s ease,
+    visibility .42s ease,
+    transform .5s var(--ease-luxury);
+}
+
+body.invitation-page .music-toggle {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+body.invitation-page .music-toggle:active {
+  transform: scale(.92);
+}
+
+/* The opening scene itself becomes the first invitation hero. No duplicated
+   envelope means its coordinates cannot jump during the transition. */
+.opening-screen .hero-copy--save,
+.opening-screen .hero-names,
+.opening-screen .scroll-cue {
+  pointer-events: none;
+}
+
+body.opening-page #weddingSite > section:not(#openingScreen) {
+  visibility: hidden;
+}
+
+body.invitation-page #weddingSite > section:not(#openingScreen) {
+  visibility: visible;
+}
+
+/* Avoid a flash of lower content while the body switches from locked opening
+   state to the scrollable invitation state. */
+#weddingSite > section:not(#openingScreen) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 800px;
+}

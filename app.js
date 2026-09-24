@@ -1,9 +1,19 @@
+const sitePage = document.body;
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+window.scrollTo(0, 0);
+
 const openingScreen = document.getElementById("openingScreen");
 const envelopeButton = document.getElementById("envelopeButton");
 const heartSnow = document.getElementById("heartSnow");
 const celebrationBurst = document.getElementById("celebrationBurst");
+const weddingMusic = document.getElementById("weddingMusic");
+const musicToggle = document.getElementById("musicToggle");
+const themeColor = document.querySelector('meta[name="theme-color"]');
 
 const palette = ["#c43643", "#e7b3b4", "#bf8a43", "#f0d5cf", "#9f2835", "#d1a057"];
+const TARGET_VOLUME = 0.72;
 
 function seeded(index, salt = 1) {
   const x = Math.sin(index * 91.713 + salt * 17.137) * 43758.5453;
@@ -27,7 +37,9 @@ function createHeart(index) {
   return wrapper;
 }
 
-for (let i = 0; i < 26; i += 1) heartSnow.appendChild(createHeart(i));
+if (heartSnow) {
+  for (let i = 0; i < 26; i += 1) heartSnow.appendChild(createHeart(i));
+}
 
 function createBurstPiece(kind, x, y, dx, dy, size, color, rotA, rotB) {
   const piece = document.createElement("span");
@@ -48,6 +60,8 @@ function createBurstPiece(kind, x, y, dx, dy, size, color, rotA, rotB) {
 }
 
 function triggerCelebrationBurst() {
+  if (!openingScreen || !envelopeButton || !celebrationBurst) return;
+
   const screenRect = openingScreen.getBoundingClientRect();
   const btnRect = envelopeButton.getBoundingClientRect();
   const originX = btnRect.left - screenRect.left + btnRect.width * 0.5;
@@ -57,7 +71,9 @@ function triggerCelebrationBurst() {
     const angle = (-140 + (280 / 15) * i) * (Math.PI / 180);
     const distance = 90 + seeded(i, 30) * 135;
     celebrationBurst.appendChild(createBurstPiece(
-      "heart", originX, originY,
+      "heart",
+      originX,
+      originY,
       Math.cos(angle) * distance,
       Math.sin(angle) * distance - 18,
       12 + seeded(i, 31) * 17,
@@ -71,36 +87,137 @@ function triggerCelebrationBurst() {
     const angle = (-155 + (310 / 8) * i) * (Math.PI / 180);
     const distance = 65 + seeded(i, 40) * 110;
     celebrationBurst.appendChild(createBurstPiece(
-      "spark", originX, originY,
+      "spark",
+      originX,
+      originY,
       Math.cos(angle) * distance,
       Math.sin(angle) * distance - 10,
       5 + seeded(i, 41) * 6,
       i % 2 ? "#f1e6d8" : "#f7d38f",
-      0, 0
+      0,
+      0
     ));
   }
 }
 
+function updateMusicButton() {
+  if (!weddingMusic || !musicToggle) return;
+  const playing = !weddingMusic.paused && weddingMusic.volume > 0.01;
+  musicToggle.classList.toggle("is-playing", playing);
+  musicToggle.setAttribute("aria-label", playing ? "Tắt nhạc" : "Bật nhạc");
+}
+
+async function primeMusicFromEnvelopeTap() {
+  if (!weddingMusic) return false;
+
+  weddingMusic.loop = true;
+  weddingMusic.volume = 0.001;
+
+  try {
+    await weddingMusic.play();
+    return true;
+  } catch (error) {
+    console.log("Không thể khởi tạo nhạc từ thao tác mở thư:", error);
+    return false;
+  }
+}
+
+function fadeMusicTo(targetVolume = TARGET_VOLUME, duration = 900) {
+  if (!weddingMusic || weddingMusic.paused) return;
+
+  const startVolume = weddingMusic.volume;
+  const start = performance.now();
+
+  const tick = (now) => {
+    const progress = Math.min(1, (now - start) / duration);
+    weddingMusic.volume = startVolume + (targetVolume - startVolume) * progress;
+    if (progress < 1) {
+      requestAnimationFrame(tick);
+    } else {
+      updateMusicButton();
+    }
+  };
+
+  requestAnimationFrame(tick);
+}
+
+async function startAudibleMusic() {
+  if (!weddingMusic) return;
+
+  // The track was primed silently during the envelope tap. Restart from 0 so
+  // guests hear the song from its beginning only after the envelope is open.
+  try {
+    weddingMusic.currentTime = 0;
+  } catch (_) {}
+
+  if (weddingMusic.paused) {
+    weddingMusic.volume = TARGET_VOLUME;
+    try {
+      await weddingMusic.play();
+    } catch (error) {
+      console.log("Trình duyệt yêu cầu chạm nút nhạc để phát:", error);
+      updateMusicButton();
+      return;
+    }
+  }
+
+  fadeMusicTo(TARGET_VOLUME, 900);
+}
+
+musicToggle?.addEventListener("click", async () => {
+  if (!weddingMusic) return;
+
+  if (weddingMusic.paused) {
+    weddingMusic.volume = TARGET_VOLUME;
+    try {
+      await weddingMusic.play();
+    } catch (_) {}
+  } else {
+    weddingMusic.pause();
+  }
+
+  updateMusicButton();
+});
+
+function revealInvitationContent() {
+  sitePage.classList.remove("opening-page");
+  sitePage.classList.add("invitation-page", "is-ready");
+  openingScreen?.classList.add("is-open");
+  themeColor?.setAttribute("content", "#f4efe7");
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  updateMusicButton();
+  document.dispatchEvent(new CustomEvent("wedding:opened"));
+}
+
 let hasOpened = false;
 
-envelopeButton.addEventListener("click", () => {
+envelopeButton?.addEventListener("click", () => {
   if (hasOpened) return;
   hasOpened = true;
+
+  // Important: call play() while this click still has user activation.
+  // It stays effectively silent until the envelope finishes opening.
+  primeMusicFromEnvelopeTap();
 
   envelopeButton.disabled = true;
   envelopeButton.setAttribute("aria-expanded", "true");
   triggerCelebrationBurst();
-  openingScreen.classList.add("is-opening");
+  openingScreen?.classList.add("is-opening");
 
   window.setTimeout(() => {
-    openingScreen.classList.remove("is-opening");
-    openingScreen.classList.add("is-open");
-  }, 2050);
+    openingScreen?.classList.remove("is-opening");
+    openingScreen?.classList.add("is-open");
+    startAudibleMusic();
+  }, 2150);
 
-  // Đợi ảnh + hoa nhô ra xong rồi sang trang 2.
-  // Trang 2 dùng cùng kích thước/toạ độ envelope nên cảm giác như chỉ chữ xuất hiện.
+  // Same visual position, but no page navigation anymore: only the copy/content appears.
   window.setTimeout(() => {
-    sessionStorage.setItem("wedding-opened", "1");
-    window.location.href = "invitation.html";
-  }, 3050);
+    revealInvitationContent();
+  }, 2950);
+});
+
+// A normal reload always starts from the closed-envelope state.
+// If the browser restores this document from its back/forward cache, reset it too.
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) window.location.reload();
 });

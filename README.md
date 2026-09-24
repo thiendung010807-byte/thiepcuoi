@@ -1,38 +1,52 @@
-# Wedding Invitation
+# Wedding Invitation — single-page optimized
 
-- `index.html`: trang mở bao thư.
-- `invitation.html`: trang nội dung sau khi mở thư.
-- Album tự chuyển nhanh hơn (~2,7 giây), hỗ trợ vuốt trái/phải và chạm ảnh đang ở giữa để xem toàn màn hình.
-- Bên dưới album có phần `THÔNG TIN TIỆC CƯỚI`, lịch tháng 01/2026 và nút tải lịch `.ics`.
+Web hiện chạy theo **một trang duy nhất (`index.html`)**:
 
-Mở `index.html` để chạy từ đầu.
+1. tải trang → chỉ thấy bao thư đóng, **không có nút nhạc và không có nhạc nghe được**;
+2. bấm bao thư → animation mở thư chạy;
+3. trong chính thao tác bấm này, audio được khởi tạo ở mức gần như im lặng để giữ quyền phát nhạc trên mobile;
+4. khi bao thư mở xong → bài nhạc bắt đầu lại từ đầu, fade-in và nút nhạc mới xuất hiện;
+5. chữ `SAVE THE DATE`, tên cô dâu/chú rể và toàn bộ nội dung bên dưới hiện ra **mà không tải sang HTML khác**, vì vậy bao thư/ảnh không bị lệch và nhạc không bị reset;
+6. reload/F5 → DOM trở lại trạng thái bao thư đóng như ban đầu.
 
-## RSVP
-Nút "XÁC NHẬN THAM DỰ" mở form RSVP mobile-first. Bản hiện tại lưu phản hồi gần nhất vào localStorage trên thiết bị để test giao diện. Khi có endpoint Google Apps Script / Supabase / API riêng, có thể nối phần submit trong `invitation.js` để thu phản hồi tập trung.
+`invitation.html` chỉ còn là redirect về `index.html` để các link cũ vẫn hoạt động.
 
-## Album lightbox
-Khi ảnh được mở toàn màn hình, autoplay của album tạm dừng hoàn toàn. Autoplay chỉ chạy lại sau khi đóng lightbox. Ảnh trong lightbox được mở lớn gần sát kích thước màn hình và vẫn hỗ trợ vuốt trái/phải thủ công.
+## Nhạc
 
+File mặc định:
 
-## Mục mới
-- Thêm phần địa điểm tiệc cưới với bản đồ nhúng và nút mở Google Maps / chỉ đường.
-- Thêm phần lịch trình ngày cưới dạng timeline.
-- Thêm phần sổ lưu bút, cho phép gửi lời chúc và lưu tạm trên localStorage để demo giao diện.
+`assets/wedding-music.mp3`
 
-## Đồng bộ tên và quà mừng
-Toàn bộ tên cô dâu/chú rể và thông tin quà mừng được gom vào `wedding-config.js`.
-Chỉ cần sửa các giá trị trong file đó, phần tên trên thiệp, gợi ý lời chúc, tiêu đề lịch và hộp quà sẽ cập nhật theo.
+Muốn đổi bài, chỉ cần ghi đè file này bằng MP3 mới cùng tên. Nút góc phải dưới chỉ xuất hiện sau khi mở thư:
+- đang phát → đĩa xoay;
+- tạm dừng → đĩa đứng yên;
+- nhạc loop liên tục.
 
-Để thêm QR chuyển khoản thật của chú rể:
-1. Chép ảnh QR vào thư mục `assets/`, ví dụ `assets/qr-chu-re.png`.
-2. Trong `wedding-config.js`, đặt `bankQrImage: "assets/qr-chu-re.png"`.
-3. Điền `bankName`, `bankAccount`, `bankAccountName`.
+## Tên cô dâu/chú rể và quà mừng
 
-## Sổ lưu bút
-Khung lời chúc hiển thị khoảng 5-6 lời chúc và có thanh cuộn riêng. Nút đũa thần mở 5 gợi ý ngẫu nhiên từ hơn 20 mẫu; nút `Tạo thêm` tạo nhóm gợi ý mới. Gợi ý có tên cô dâu/chú rể lấy trực tiếp từ `wedding-config.js`.
+Sửa một nơi duy nhất trong `wedding-config.js`:
+- tên chú rể / cô dâu;
+- tên ngắn dùng trong gợi ý lời chúc;
+- ngân hàng, số tài khoản, tên tài khoản;
+- đường dẫn ảnh QR.
 
+## Album
 
-## Cập nhật giao diện 24/09
-- Khóa cuộn ngang toàn trang, bao gồm cả trang mở thư và trang nội dung.
-- Hộp quà mừng dùng ảnh bao lì xì hoa đỏ thật (`assets/gift-envelope.png`) và lắc/lơ lửng nhẹ.
-- Lightbox album mở ảnh lớn gần toàn màn hình, có bộ đếm, nút trước/sau và thanh thumbnail ở dưới; autoplay vẫn dừng khi lightbox mở.
+Ảnh album nằm trong `assets/album/`. Ảnh dưới màn hình dùng lazy-loading. Carousel chỉ tự chạy khi khu vực album thực sự ở trong viewport và dừng khi mở lightbox.
+
+## RSVP + Sổ lưu bút
+
+Frontend gọi:
+- `POST /api/rsvp`
+- `GET /api/wishes`
+- `POST /api/wishes`
+
+Các API Vercel chuyển tiếp đến Google Apps Script. Trên Vercel cần đặt Environment Variable:
+
+`GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/.../exec`
+
+Khi mở bằng `file://` trên máy, sổ lưu bút dùng localStorage để preview giao diện.
+
+## Deploy Vercel
+
+Project không cần build framework. Import repository vào Vercel và đặt `GOOGLE_SCRIPT_URL`. File `vercel.json` giữ cache dài hạn cho assets và `no-store` cho API.
