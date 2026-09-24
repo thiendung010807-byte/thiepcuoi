@@ -3030,7 +3030,7 @@ body.invitation-page #weddingSite > section:not(#openingScreen) {
 .guestbook-pen {
   position: relative;
   z-index: 5;
-  background: #f6efe6;
+  background: #7d1b26;
   box-shadow:
     0 6px 16px rgba(87, 22, 31, .10),
     inset 0 0 0 1px rgba(122,29,39,.08);
