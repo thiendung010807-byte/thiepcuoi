@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#68131b" />
+    <title>Thiệp cưới</title>
+    <meta name="description" content="Thiệp mời cưới" />
+
+    <link rel="preload" as="image" href="assets/envelope-closed.png" />
+    <link rel="preload" as="image" href="assets/envelope-open.png" />
+    <link rel="preload" as="image" href="assets/envelope-front.png" />
+    <link rel="preload" as="image" href="assets/floral-branch.png" />
+    <link rel="preload" as="image" href="assets/couple-envelope.jpg" />
+    <link rel="preload" as="image" href="assets/paper-bg.png" />
+    <link rel="prefetch" href="invitation.html" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="opening-page">
+    <main class="opening-screen" id="openingScreen">
+      <div class="scene-bg scene-bg--wine" aria-hidden="true"></div>
+      <div class="scene-bg scene-bg--paper" aria-hidden="true"></div>
+      <div class="heart-snow" id="heartSnow" aria-hidden="true"></div>
+      <div class="celebration-burst" id="celebrationBurst" aria-hidden="true"></div>
+
+      <section class="hero-stage" aria-label="Mở thiệp cưới">
+        <button
+          class="envelope-stage"
+          id="envelopeButton"
+          type="button"
+          aria-label="Mở thiệp cưới"
+          aria-expanded="false"
+        >
+          <span class="outside-floral outside-floral--left" aria-hidden="true">
+            <img class="outside-floral__main" src="assets/floral-branch.png" alt="" draggable="false" />
+            <img class="outside-floral__ghost outside-floral__ghost--one" src="assets/floral-branch.png" alt="" draggable="false" />
+            <img class="outside-floral__ghost outside-floral__ghost--two" src="assets/floral-branch.png" alt="" draggable="false" />
+          </span>
+
+          <span class="outside-floral outside-floral--right" aria-hidden="true">
+            <img class="outside-floral__main" src="assets/floral-branch.png" alt="" draggable="false" />
+            <img class="outside-floral__ghost outside-floral__ghost--one" src="assets/floral-branch.png" alt="" draggable="false" />
+            <img class="outside-floral__ghost outside-floral__ghost--two" src="assets/floral-branch.png" alt="" draggable="false" />
+          </span>
+
+          <span class="seal-halo" aria-hidden="true"></span>
+
+          <img
+            class="envelope-layer envelope-layer--closed"
+            src="assets/envelope-closed.png"
+            alt="Bao thư cưới đang đóng"
+            draggable="false"
+          />
+
+          <span class="envelope-open-group" aria-hidden="true">
+            <img class="envelope-layer envelope-layer--open" src="assets/envelope-open.png" alt="" draggable="false" />
+
+            <span class="invitation-card-slot">
+              <span class="insert-riser">
+                <img class="insert-floral" src="assets/floral-branch.png" alt="" draggable="false" />
+                <span class="photo-card">
+                  <img src="assets/couple-envelope.jpg" alt="Ảnh cô dâu và chú rể" draggable="false" />
+                </span>
+              </span>
+            </span>
+
+            <img class="envelope-layer envelope-layer--front" src="assets/envelope-front.png" alt="" draggable="false" />
+          </span>
+        </button>
+
+        <p class="open-hint" id="openHint">Chạm vào bao thư để mở</p>
+      </section>
+    </main>
+
+    <script src="wedding-config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

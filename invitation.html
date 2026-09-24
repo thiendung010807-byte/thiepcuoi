@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4efe7" />
+    <title>Thiệp cưới</title>
+    <meta name="description" content="Thông tin thiệp mời cưới" />
+
+    <link rel="preload" as="image" href="assets/envelope-open.png" />
+    <link rel="preload" as="image" href="assets/envelope-front.png" />
+    <link rel="preload" as="image" href="assets/floral-branch.png" />
+    <link rel="preload" as="image" href="assets/couple-envelope.jpg" />
+    <link rel="preload" as="image" href="assets/paper-bg.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="invitation-page">
+    <main>
+      <section class="invitation-hero" aria-label="Thiệp mời cưới">
+        <div class="paper-background" aria-hidden="true"></div>
+
+        <div class="hero-copy hero-copy--save reveal-on-load">SAVE THE DATE</div>
+
+        <div class="hero-stage">
+          <div class="envelope-stage envelope-stage--static" aria-hidden="true">
+            <span class="envelope-open-group envelope-open-group--visible">
+              <img class="envelope-layer envelope-layer--open" src="assets/envelope-open.png" alt="" draggable="false" />
+
+              <span class="invitation-card-slot">
+                <span class="insert-riser insert-riser--visible">
+                  <img class="insert-floral" src="assets/floral-branch.png" alt="" draggable="false" />
+                  <span class="photo-card">
+                    <img src="assets/couple-envelope.jpg" alt="Ảnh cô dâu và chú rể" draggable="false" />
+                  </span>
+                </span>
+              </span>
+
+              <img class="envelope-layer envelope-layer--front" src="assets/envelope-front.png" alt="" draggable="false" />
+            </span>
+          </div>
+        </div>
+
+        <div class="hero-names reveal-on-load" aria-label="Tên cô dâu chú rể">
+          <span class="hero-name">Đặng Hoàng Long</span>
+          <span class="hero-ampersand">&amp;</span>
+          <span class="hero-name">Vũ Bảo Ngọc</span>
+        </div>
+
+        <div class="scroll-cue reveal-on-load" aria-hidden="true">
+          <span>Thông tin lễ cưới</span>
+          <span class="scroll-cue__line"></span>
+        </div>
+      </section>
+
+      <section class="wedding-info-section" id="weddingInfo" aria-labelledby="weddingInfoTitle">
+        <div class="wedding-info-shell">
+          <article class="wedding-info-card">
+            <img class="wedding-info-floral" src="assets/floral-branch.png" alt="" aria-hidden="true" draggable="false" />
+
+            <h2 class="info-title reveal-slide from-left" id="weddingInfoTitle">THÔNG TIN LỄ CƯỚI</h2>
+
+            <div class="family-grid">
+              <div class="family-block reveal-slide from-left">
+                <p class="family-label">Ông Bà</p>
+                <p class="family-name">Nguyễn Văn Thuận</p>
+                <p class="family-name">Phạm Thị Lê</p>
+                <p class="family-address">Ấp Long Phú, X.Phước Thái, TP.Đồng Nai</p>
+              </div>
+
+              <span class="family-divider" aria-hidden="true"></span>
+
+              <div class="family-block reveal-slide from-right">
+                <p class="family-label">Ông Bà</p>
+                <p class="family-name">Trần Văn Kiên</p>
+                <p class="family-name">Trần Thị Quế</p>
+                <p class="family-address">Thôn Nghĩa Hùng, X.Nghĩa Lâm, T.Ninh Bình</p>
+              </div>
+            </div>
+
+            <div class="invitation-copy reveal-slide from-left">
+              <p>TRÂN TRỌNG BÁO TIN</p>
+              <p>LỄ THÀNH HÔN CỦA CON CHÚNG TÔI</p>
+            </div>
+
+            <div class="info-couple">
+              <p class="info-person reveal-slide from-right">Đặng Hoàng Long</p>
+              <p class="info-ampersand reveal-slide from-left">&amp;</p>
+              <p class="info-person reveal-slide from-right">Vũ Bảo Ngọc</p>
+            </div>
+
+            <div class="ceremony-copy reveal-slide from-left">
+              <p>LỄ THÀNH HÔN ĐƯỢC CỬ HÀNH TẠI</p>
+              <p class="venue-name">TƯ GIA NHÀ TRAI</p>
+            </div>
+
+            <div class="date-block">
+              <div class="date-topline reveal-slide from-right">
+                <span>VÀO LÚC 09:00</span>
+                <span>CHỦ NHẬT</span>
+              </div>
+
+              <div class="date-main">
+                <span class="date-day reveal-slide from-left">18</span>
+                <span class="date-divider" aria-hidden="true"></span>
+                <span class="date-month-year reveal-slide from-right">
+                  <strong>THÁNG 10</strong>
+                  <strong>2026</strong>
+                </span>
+              </div>
+
+              <p class="lunar-note reveal-slide from-left">(TỨC NGÀY 09 THÁNG 09 NĂM BÍNH NGỌ)</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="album-section" id="album" aria-labelledby="albumTitle">
+        <div class="album-inner">
+          <h2 class="album-title reveal-slide from-left" id="albumTitle">ALBUM ẢNH</h2>
+          <p class="album-subtitle reveal-slide from-right">Những khoảnh khắc của chúng tôi</p>
+
+          <div class="album-carousel" id="albumCarousel" aria-roledescription="carousel" aria-label="Album ảnh cưới">
+            <div class="album-track" id="albumTrack">
+              <article class="album-slide" data-index="0"><img src="assets/album/album-01.jpg" alt="Ảnh cưới 1" draggable="false"></article>
+              <article class="album-slide" data-index="1"><img src="assets/album/album-02.jpg" alt="Ảnh cưới 2" draggable="false"></article>
+              <article class="album-slide" data-index="2"><img src="assets/album/album-03.jpg" alt="Ảnh cưới 3" draggable="false"></article>
+              <article class="album-slide" data-index="3"><img src="assets/album/album-04.jpg" alt="Ảnh cưới 4" draggable="false"></article>
+              <article class="album-slide" data-index="4"><img src="assets/album/album-05.jpg" alt="Ảnh cưới 5" draggable="false"></article>
+              <article class="album-slide" data-index="5"><img src="assets/album/album-06.jpg" alt="Ảnh cưới 6" draggable="false"></article>
+              <article class="album-slide" data-index="6"><img src="assets/album/album-07.jpg" alt="Ảnh cưới 7" draggable="false"></article>
+              <article class="album-slide" data-index="7"><img src="assets/album/album-08.jpg" alt="Ảnh cưới 8" draggable="false"></article>
+            </div>
+          </div>
+
+          <div class="album-dots" id="albumDots" aria-label="Chọn ảnh trong album"></div>
+          <p class="album-swipe-hint" aria-hidden="true">Lướt trái / phải · Chạm ảnh để xem lớn</p>
+        </div>
+      </section>
+
+      <section class="party-info-section" id="partyInfo" aria-labelledby="partyInfoTitle">
+        <div class="party-info-shell">
+          <article class="party-info-card">
+            <img class="party-info-floral" src="assets/floral-branch.png" alt="" aria-hidden="true" draggable="false" />
+
+            <h2 class="party-title reveal-slide from-left" id="partyInfoTitle">THÔNG TIN TIỆC CƯỚI</h2>
+            <p class="party-lead reveal-slide from-right">TIỆC CƯỚI SẼ DIỄN RA VÀO LÚC:</p>
+
+            <div class="party-date-block">
+              <div class="party-weektime reveal-slide from-left">
+                <span>THỨ BẢY</span>
+                <span>18:00</span>
+              </div>
+
+              <div class="party-date-main">
+                <span class="party-day reveal-slide from-left">18</span>
+                <span class="party-date-divider" aria-hidden="true"></span>
+                <span class="party-month-year reveal-slide from-right">
+                  <strong>THÁNG 10</strong>
+                  <strong>2026</strong>
+                </span>
+              </div>
+
+              <p class="party-lunar reveal-slide from-right">(TỨC NGÀY 09 THÁNG 09 NĂM BÍNH NGỌ)</p>
+            </div>
+
+            <div class="party-times reveal-slide from-left" aria-label="Thời gian đón khách và khai tiệc">
+              <div>
+                <span>ĐÓN KHÁCH</span>
+                <strong>17:30</strong>
+              </div>
+              <div>
+                <span>KHAI TIỆC</span>
+                <strong>18:00</strong>
+              </div>
+            </div>
+
+            <div class="party-calendar reveal-slide from-right" aria-label="Lịch tháng 1 năm 2026">
+              <div class="calendar-heading">Tháng 1 / 2026</div>
+              <div class="calendar-weekdays" aria-hidden="true">
+                <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
+              </div>
+              <div class="calendar-grid">
+                <span class="empty"></span><span class="empty"></span><span class="empty"></span>
+                <span>1</span><span>2</span><span class="wedding-day">3</span><span>4</span>
+                <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+                <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
+                <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
+                <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span><span>31</span><span class="empty"></span>
+              </div>
+            </div>
+
+            <button class="add-calendar-link reveal-slide from-left" id="addCalendarButton" type="button">Thêm vào lịch</button>
+            <button class="rsvp-button reveal-slide from-right" id="rsvpButton" type="button">XÁC NHẬN THAM DỰ</button>
+          </article>
+        </div>
+      </section>
+    
+
+      <section class="venue-section" id="venue" aria-labelledby="venueTitle">
+        <div class="venue-inner">
+          <h2 class="section-title reveal-slide from-left" id="venueTitle">TIỆC CƯỚI SẼ TỔ CHỨC TẠI</h2>
+          <p class="venue-address reveal-slide from-right">Trung Tâm Hội Nghị White Palace, 194 Hoàng Văn Thụ, Phường 9, Quận Phú Nhuận, TP. Hồ Chí Minh</p>
+
+          <div class="venue-map-card reveal-slide from-left">
+            <div class="venue-map-topbar">
+              <span>White Palace Hoàng Văn Thụ</span>
+              <a class="venue-map-open" href="https://www.google.com/maps/search/?api=1&query=White+Palace+194+Ho%C3%A0ng+V%C4%83n+Th%E1%BB%A5+Ph%C6%B0%E1%BB%9Dng+9+Qu%E1%BA%ADn+Ph%C3%BA+Nhu%E1%BA%ADn+TP+H%E1%BB%93+Ch%C3%AD+Minh" target="_blank" rel="noopener noreferrer">Mở trong Maps ↗</a>
+            </div>
+            <iframe
+              title="Bản đồ White Palace Hoàng Văn Thụ"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=White%20Palace%20194%20Ho%C3%A0ng%20V%C4%83n%20Th%E1%BB%A5%2C%20Ph%C6%B0%E1%BB%9Dng%209%2C%20Ph%C3%BA%20Nhu%E1%BA%ADn%2C%20TP.%20H%E1%BB%93%20Ch%C3%AD%20Minh&z=16&output=embed"></iframe>
+          </div>
+
+          <a class="venue-direction-link reveal-slide from-right" href="https://www.google.com/maps/dir/?api=1&destination=White+Palace+194+Ho%C3%A0ng+V%C4%83n+Th%E1%BB%A5+Ph%C6%B0%E1%BB%9Dng+9+Qu%E1%BA%ADn+Ph%C3%BA+Nhu%E1%BA%ADn+TP+H%E1%BB%93+Ch%C3%AD+Minh" target="_blank" rel="noopener noreferrer">⌁ Chỉ đường</a>
+        </div>
+      </section>
+
+      <section class="timeline-section" id="timeline" aria-labelledby="timelineTitle">
+        <div class="timeline-shell">
+          <article class="timeline-card">
+            <img class="timeline-floral" src="assets/floral-branch.png" alt="" aria-hidden="true" draggable="false" />
+            <h2 class="section-title section-title--light reveal-slide from-left" id="timelineTitle">LỊCH TRÌNH NGÀY CƯỚI</h2>
+
+            <div class="timeline-list">
+              <div class="timeline-item reveal-slide from-left">
+                <span class="timeline-icon">💌</span>
+                <span class="timeline-time">11:00</span>
+                <span class="timeline-dot"></span>
+                <span class="timeline-label">Đón khách</span>
+              </div>
+              <div class="timeline-item reveal-slide from-right">
+                <span class="timeline-icon">🍽️</span>
+                <span class="timeline-time">11:30</span>
+                <span class="timeline-dot"></span>
+                <span class="timeline-label">Khai tiệc</span>
+              </div>
+              <div class="timeline-item reveal-slide from-left">
+                <span class="timeline-icon">💍</span>
+                <span class="timeline-time">18:30</span>
+                <span class="timeline-dot"></span>
+                <span class="timeline-label">Nghi thức cưới</span>
+              </div>
+              <div class="timeline-item reveal-slide from-right">
+                <span class="timeline-icon">🎂</span>
+                <span class="timeline-time">19:00</span>
+                <span class="timeline-dot"></span>
+                <span class="timeline-label">Cắt bánh & nâng ly</span>
+              </div>
+              <div class="timeline-item reveal-slide from-left">
+                <span class="timeline-icon">✨</span>
+                <span class="timeline-time">20:30</span>
+                <span class="timeline-dot"></span>
+                <span class="timeline-label">Kết thúc tiệc</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="guestbook-section" id="guestbook" aria-labelledby="guestbookTitle">
+        <div class="guestbook-inner">
+          <div class="guestbook-form-card reveal-slide from-left">
+            <img class="guestbook-floral" src="assets/floral-branch.png" alt="" aria-hidden="true" draggable="false" />
+            <h2 class="section-title" id="guestbookTitle">SỔ LƯU BÚT</h2>
+            <form class="guestbook-form" id="guestbookForm" novalidate>
+              <label class="guestbook-field">
+                <input id="guestbookName" name="name" type="text" placeholder="Nhập tên*" required />
+              </label>
+              <label class="guestbook-field">
+                <textarea id="guestbookMessage" name="message" rows="4" placeholder="Nhập lời chúc*" required></textarea>
+              </label>
+              <div class="guestbook-form-row">
+                <button class="guestbook-pen" id="wishSuggestButton" type="button" aria-label="Gợi ý lời chúc">🪄</button>
+                <button class="guestbook-submit" type="submit">GỬI LỜI CHÚC</button>
+              </div>
+              <p class="guestbook-error" id="guestbookError" role="alert" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <div class="guestbook-list" id="guestbookList" aria-live="polite"></div>
+        </div>
+      </section>
+
+
+      <section class="gift-section" id="gift" aria-labelledby="giftTitle">
+        <div class="gift-inner">
+          <h2 class="section-title reveal-slide from-left" id="giftTitle">HỘP QUÀ MỪNG</h2>
+          <button class="gift-envelope-stage reveal-slide from-right" id="giftOpenButton" type="button" aria-label="Mở hộp quà mừng">
+            <img class="gift-envelope-image gift-envelope-image--left" src="assets/gift-envelope.png" alt="" aria-hidden="true" draggable="false" />
+            <img class="gift-envelope-image gift-envelope-image--right" src="assets/gift-envelope.png" alt="" aria-hidden="true" draggable="false" />
+          </button>
+          <p class="gift-hint reveal-slide from-left">Nhấn để mở</p>
+        </div>
+      </section>
+
+    </main>
+
+    <div class="album-lightbox" id="albumLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Xem ảnh cưới">
+      <div class="lightbox-counter" id="lightboxCaption" aria-live="polite"></div>
+      <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Đóng ảnh">×</button>
+      <button class="lightbox-nav lightbox-nav--prev" id="lightboxPrev" type="button" aria-label="Ảnh trước">‹</button>
+      <figure class="lightbox-figure">
+        <img id="lightboxImage" src="" alt="" draggable="false" />
+      </figure>
+      <button class="lightbox-nav lightbox-nav--next" id="lightboxNext" type="button" aria-label="Ảnh tiếp theo">›</button>
+      <div class="lightbox-thumbs" id="lightboxThumbs" aria-label="Chọn ảnh"></div>
+    </div>
+
+    <div class="rsvp-modal" id="rsvpModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="rsvpTitle">
+      <div class="rsvp-backdrop" data-rsvp-close aria-hidden="true"></div>
+      <section class="rsvp-sheet" role="document">
+        <button class="rsvp-close" id="rsvpClose" type="button" aria-label="Đóng form xác nhận">×</button>
+
+        <div class="rsvp-form-view" id="rsvpFormView">
+          <p class="rsvp-kicker">R.S.V.P</p>
+          <h2 class="rsvp-heading" id="rsvpTitle">Xác nhận tham dự</h2>
+          <p class="rsvp-intro">Sự hiện diện của bạn là niềm vui của chúng tôi.</p>
+
+          <form class="rsvp-form" id="rsvpForm" novalidate>
+            <label class="rsvp-field">
+              <span>Họ và tên <em>*</em></span>
+              <input id="rsvpName" name="name" type="text" autocomplete="name" placeholder="Tên của bạn" required />
+            </label>
+
+            <fieldset class="rsvp-attendance">
+              <legend>Bạn sẽ tham dự? <em>*</em></legend>
+              <div class="rsvp-choice-grid">
+                <label class="rsvp-choice">
+                  <input type="radio" name="attendance" value="yes" required />
+                  <span>Có, tôi sẽ đến</span>
+                </label>
+                <label class="rsvp-choice">
+                  <input type="radio" name="attendance" value="no" required />
+                  <span>Rất tiếc, tôi bận</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <label class="rsvp-field" id="guestCountField">
+              <span>Số người tham dự</span>
+              <select id="rsvpGuests" name="guests">
+                <option value="1">1 người</option>
+                <option value="2">2 người</option>
+                <option value="3">3 người</option>
+                <option value="4">4 người</option>
+                <option value="5">5 người</option>
+              </select>
+            </label>
+
+            <label class="rsvp-field">
+              <span>Lời nhắn dành cho cô dâu chú rể</span>
+              <textarea id="rsvpMessage" name="message" rows="4" placeholder="Gửi một lời chúc nhỏ..."></textarea>
+            </label>
+
+            <p class="rsvp-error" id="rsvpError" role="alert" aria-live="polite"></p>
+            <button class="rsvp-submit" type="submit">GỬI XÁC NHẬN</button>
+          </form>
+        </div>
+
+        <div class="rsvp-success" id="rsvpSuccess" hidden>
+          <div class="rsvp-success-heart" aria-hidden="true">♥</div>
+          <p class="rsvp-kicker">CẢM ƠN BẠN</p>
+          <h2 class="rsvp-heading">Đã ghi nhận phản hồi</h2>
+          <p id="rsvpSuccessText">Hẹn gặp bạn trong ngày vui của chúng tôi.</p>
+          <button class="rsvp-submit rsvp-submit--secondary" id="rsvpDone" type="button">ĐÓNG</button>
+        </div>
+      </section>
+    </div>
+
+
+
+    <div class="wish-suggest-modal" id="wishSuggestModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="wishSuggestTitle">
+      <div class="wish-suggest-backdrop" data-wish-close aria-hidden="true"></div>
+      <section class="wish-suggest-panel" role="document">
+        <button class="wish-suggest-close" id="wishSuggestClose" type="button" aria-label="Đóng gợi ý">×</button>
+        <h2 id="wishSuggestTitle">✨ Lời chúc gợi ý cho bạn</h2>
+        <p>Chọn một lời chúc bạn thích hoặc tạo lại để xem thêm gợi ý.</p>
+        <div class="wish-suggest-list" id="wishSuggestList"></div>
+        <div class="wish-suggest-actions">
+          <button class="wish-generate-more" id="wishGenerateMore" type="button">✨ Tạo thêm</button>
+          <button class="wish-close-secondary" id="wishCloseSecondary" type="button">Đóng</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="gift-modal" id="giftModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="giftModalTitle">
+      <div class="gift-modal-backdrop" data-gift-close aria-hidden="true"></div>
+      <section class="gift-modal-panel" role="document">
+        <div class="gift-modal-header">
+          <h2 id="giftModalTitle">HỘP QUÀ MỪNG</h2>
+          <button class="gift-modal-close" id="giftModalClose" type="button" aria-label="Đóng hộp quà">×</button>
+        </div>
+        <div class="gift-bank-card">
+          <p class="gift-bank-owner"><span>Chú rể -</span> <strong id="giftGroomName">Đặng Hoàng Long</strong></p>
+
+          <p class="gift-field-label gift-field-label--qr">Mã QR</p>
+          <div class="gift-qr-wrap" id="giftQrWrap">
+            <img id="giftQrImage" alt="Mã QR chuyển khoản của chú rể" hidden />
+            <div class="gift-qr-placeholder" id="giftQrPlaceholder" aria-label="Chưa cấu hình mã QR">
+              <span>QR</span>
+              <small>THÊM ẢNH QR<br />TRONG CONFIG</small>
+            </div>
+          </div>
+
+          <div class="gift-bank-details" aria-label="Thông tin chuyển khoản của chú rể">
+            <div class="gift-bank-row">
+              <span>Tên ngân hàng</span>
+              <strong id="giftBankName">Ngân hàng của chú rể</strong>
+            </div>
+            <div class="gift-bank-row">
+              <span>Số tài khoản</span>
+              <strong id="giftBankAccount">Cập nhật số tài khoản</strong>
+            </div>
+            <div class="gift-bank-row">
+              <span>Họ tên</span>
+              <strong id="giftBankAccountName">DANG HOANG LONG</strong>
+            </div>
+          </div>
+
+          <a class="gift-save-qr is-disabled" id="giftSaveQr" href="#" download aria-disabled="true">⇩ Lưu QR</a>
+        </div>
+      </section>
+    </div>
+
+    <script src="wedding-config.js"></script>
+    <script src="invitation.js"></script>
+  </body>
+</html>
